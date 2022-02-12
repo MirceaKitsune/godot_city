@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dcmbur6h2tvhc"
+path="res://.godot/imported/tile_single.obj-278e7f7b5cbe7fb49c7f1d50024260fe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile_single.obj-278e7f7b5cbe7fb49c7f1d50024260fe.mesh"]
+
+source_file="res://data/tiles/default/road/tile_single.obj"
+dest_files=["res://.godot/imported/tile_single.obj-278e7f7b5cbe7fb49c7f1d50024260fe.mesh", "res://.godot/imported/tile_single.obj-278e7f7b5cbe7fb49c7f1d50024260fe.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

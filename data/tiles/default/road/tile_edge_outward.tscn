@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://1t3o4ua7irf2"]
+
+[ext_resource type="ArrayMesh" uid="uid://1k261ao0fxif" path="res://data/tiles/default/road_edge_outward.obj" id="1_n7ja3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a7e6c"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_og4fk"]
+data = PackedVector3Array(3.5, 0, -8, -8, 0, -3.5, -8, 0, -8, 3.5, 0, 8, 8, 0, -3.5, 8, 0, 8, 3.5, 0, -3.5, -8, 0, 8, -8, 0, -3.5, 3.5, 0, 8, -8, 0, 8, 3.5, 0, -3.5, 3.5, 0, -3.5, 8, 0, -3.5, 3.5, 0, 8, 3.5, 0, -3.5, -8, 0, -3.5, 3.5, 0, -8, 8, 0.5, -8, 4, 0.5, -4, 4, 0.5, -8, 3.5, 0, -3.5, 4, 0.5, -8, 4, 0.5, -4, 3.5, 0, -3.5, 8, 0.5, -4, 8, 0, -3.5, 8, 0.5, -4, 4, 0.5, -4, 8, 0.5, -8, 4, 0.5, -4, 8, 0.5, -4, 3.5, 0, -3.5, 3.5, 0, -8, 4, 0.5, -8, 3.5, 0, -3.5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource( "1_n7ja3" )
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+physics_material_override = SubResource( "PhysicsMaterial_a7e6c" )
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource( "ConcavePolygonShape3D_og4fk" )

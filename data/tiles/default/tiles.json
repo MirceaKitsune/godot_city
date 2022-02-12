@@ -1,0 +1,34 @@
+{
+	"name": "default",
+	"scale_width": 16,
+	"scale_height": 4,
+	"noise_scale": 64,
+	"brushes": {
+		"terrain": {
+			"noise_min": -1,
+			"noise_max": 1,
+			"height": 0,
+			"tileset": {
+				"single":"terrain",
+				"center":"terrain",
+				"edge":"terrain",
+				"edge_inward":"terrain",
+				"edge_outward":"terrain",
+				"edge_outward_diagonal":"terrain"
+			}
+		},
+		"road": {
+			"noise_min": -0.5,
+			"noise_max": 0,
+			"height": 0,
+			"tileset": {
+				"single":"tile_single",
+				"center":"tile_center",
+				"edge":"tile_edge",
+				"edge_inward":"tile_edge_inward",
+				"edge_outward":"tile_edge_outward",
+				"edge_outward_diagonal":"tile_edge_outward_diagonal"
+			}
+		}
+	}
+}

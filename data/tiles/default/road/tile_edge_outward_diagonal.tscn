@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://xr0q4qblql3o"]
+
+[ext_resource type="ArrayMesh" uid="uid://cx32wxfqmlute" path="res://data/tiles/default/road_edge_outward_diagonal.obj" id="1_cmpqb"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v8k6u"]
+data = PackedVector3Array(8, 0, 8, -3.5, 0, 8, -3.5, 0, 3.5, 8, 0, 8, 3.5, 0, -3.5, 8, 0, -3.5, -8, 0, -8, 3.5, 0, -8, 3.5, 0, -3.5, -8, 0, -8, -3.5, 0, 3.5, -8, 0, 3.5, 3.5, 0, -3.5, -3.5, 0, 3.5, -8, 0, -8, 8, 0, 8, -3.5, 0, 3.5, 3.5, 0, -3.5, 8, 0.5, -8, 4, 0.5, -4, 4, 0.5, -8, 3.5, 0, -3.5, 4, 0.5, -8, 4, 0.5, -4, 3.5, 0, -3.5, 8, 0.5, -4, 8, 0, -3.5, 8, 0.5, -4, 4, 0.5, -4, 8, 0.5, -8, 4, 0.5, -4, 8, 0.5, -4, 3.5, 0, -3.5, 3.5, 0, -8, 4, 0.5, -8, 3.5, 0, -3.5, -3.5, 0, 3.5, -4, 0.5, 8, -4, 0.5, 4, -8, 0.5, 8, -4, 0.5, 4, -4, 0.5, 8, -3.5, 0, 3.5, -8, 0.5, 4, -8, 0, 3.5, -8, 0.5, 4, -4, 0.5, 4, -8, 0.5, 8, -4, 0.5, 4, -8, 0.5, 4, -3.5, 0, 3.5, -3.5, 0, 8, -4, 0.5, 8, -3.5, 0, 3.5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource( "1_cmpqb" )
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource( "ConcavePolygonShape3D_v8k6u" )

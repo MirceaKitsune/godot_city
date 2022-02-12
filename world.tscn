@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://csqrrg6yk4o7q"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_02wij"]
+[ext_resource type="Script" path="res://scripts/scene.gd" id="2_237tr"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ru03m"]
+
+[sub_resource type="Sky" id="Sky_eh0wt"]
+sky_material = SubResource( "PhysicalSkyMaterial_ru03m" )
+
+[sub_resource type="Environment" id="Environment_o7c52"]
+background_mode = 2
+sky = SubResource( "Sky_eh0wt" )
+tonemap_mode = 2
+auto_exposure_enabled = true
+ss_reflections_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+fog_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.025
+
+[sub_resource type="CameraEffects" id="CameraEffects_q4koo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a81ig"]
+radius = 0.5
+height = 2.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2dn0i"]
+radius = 0.5
+height = 2.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dqoci"]
+radius = 0.5
+height = 2.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( "Environment_o7c52" )
+camera_effects = SubResource( "CameraEffects_q4koo" )
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 5, 0)
+light_color = Color(1, 0.87451, 0.74902, 1)
+directional_shadow_mode = 0
+
+[node name="PlayerDummy" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource( "CapsuleMesh_a81ig" )
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+script = ExtResource( "1_02wij" )
+
+[node name="PlayerShape" type="MeshInstance3D" parent="Player"]
+mesh = SubResource( "CapsuleMesh_2dn0i" )
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="Player"]
+shape = SubResource( "CapsuleShape3D_dqoci" )
+
+[node name="PlayerLight" type="SpotLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
+light_energy = 5.0
+shadow_enabled = true
+spot_range = 50.0
+
+[node name="PlayerCamera" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.25)
+
+[node name="Scene" type="Node3D" parent="."]
+script = ExtResource( "2_237tr" )
