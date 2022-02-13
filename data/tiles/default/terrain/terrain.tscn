@@ -1,12 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3keaepxkgjj0"]
+[gd_scene load_steps=3 format=3 uid="uid://c3keaepxkgjj0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8yb2m"]
-size = Vector2(16, 16)
+size = Vector2(4, 4)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_60n3d"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8js10"]
-size = Vector3(16, 1, 16)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6yltw"]
+data = PackedVector3Array(2, 0, 2, -2, 0, 2, 2, 0, -2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
 
 [node name="Node3D" type="Node3D"]
 
@@ -14,8 +12,6 @@ size = Vector3(16, 1, 16)
 mesh = SubResource( "PlaneMesh_8yb2m" )
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-physics_material_override = SubResource( "PhysicsMaterial_60n3d" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource( "BoxShape3D_8js10" )
+shape = SubResource( "ConcavePolygonShape3D_6yltw" )

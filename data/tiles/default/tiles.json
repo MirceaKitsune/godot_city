@@ -1,8 +1,7 @@
 {
 	"name": "default",
-	"scale_width": 16,
-	"scale_height": 4,
-	"noise_scale": 64,
+	"scale": 4,
+	"noise_scale": 16,
 	"brushes": {
 		"terrain": {
 			"noise_min": -1,

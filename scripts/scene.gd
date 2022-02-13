@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var tileset = "default"
-@export var count = 16
+@export var count = 64
 @export var height = 0
 
 class _tileset extends Node3D:
@@ -98,8 +98,8 @@ class _tileset extends Node3D:
 			type = ["edge_outward", 0]
 
 		# Determine the real name position and rotation used by the scene node
-		var scene_pos = Vector3(pos.x * def.scale_width, pos.y * def.scale_height, pos.z * def.scale_width)
-		var scene_rot = Vector3(0, deg2rad(type[1] * 90), 0)
+		var scene_pos = pos * def.scale
+		var scene_rot = Vector3(0, 1, 0) * deg2rad(type[1] * 90)
 		var scene_name = tiles[pos] + "_" + type[0]
 
 		# Remove the existing scene before proceeding, skip if the existing scene has identical properties
@@ -134,7 +134,7 @@ class _tileset extends Node3D:
 			for y in range(mins.y, maxs.y + 1, 1):
 				for z in range(mins.z, maxs.z + 1, 1):
 					var pos = Vector3i(x, y, z)
-					var scene_pos = Vector3(pos.x * def.scale_width, pos.y * def.scale_height, pos.z * def.scale_width)
+					var scene_pos = pos * def.scale
 					var n = noise.get_noise_3dv(scene_pos)
 					tiles[pos] = ""
 					for brush in def.brushes:

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://mv02peqlbw2r"]
 
-[ext_resource type="ArrayMesh" uid="uid://b3o166s05yfw" path="res://data/tiles/default/road/tile_single.obj" id="1_aovni"]
+[ext_resource type="ArrayMesh" uid="uid://wacke6jri183" path="res://data/tiles/default/road/tile_single.obj" id="1_aovni"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5yjxj"]
-data = PackedVector3Array(8, 0, -8, -8, 0, 8, -8, 0, -8, 8, 0, 8, -8, 0, 8, 8, 0, -8)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_iq71a"]
+data = PackedVector3Array(2, 0, -2, -2, 0, 2, -2, 0, -2, 2, 0, 2, -2, 0, 2, 2, 0, -2)
 
 [node name="Node3D" type="Node3D"]
 
@@ -13,4 +13,4 @@ mesh = ExtResource( "1_aovni" )
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_5yjxj" )
+shape = SubResource( "ConcavePolygonShape3D_iq71a" )
