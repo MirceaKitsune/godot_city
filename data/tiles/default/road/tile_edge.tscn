@@ -1,16 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://boikj83en3hij"]
+[gd_scene load_steps=6 format=3 uid="uid://boikj83en3hij"]
 
-[ext_resource type="ArrayMesh" uid="uid://hjceo2n0xf82" path="res://data/tiles/default/road_edge.obj" id="1_7jv83"]
+[ext_resource type="ArrayMesh" uid="uid://bsmonm6qivbtt" path="res://data/tiles/default/road/tile_edge.obj" id="1_7jv83"]
+[ext_resource type="Material" uid="uid://cnpxan38ge32w" path="res://data/materials/tiles.tres" id="2_oat4o"]
+[ext_resource type="Material" uid="uid://c1uufvgdgie42" path="res://data/materials/tiles_large.tres" id="3_nk368"]
+[ext_resource type="Material" uid="uid://q0rfpixbugic" path="res://data/materials/tiles_large_dirt.tres" id="4_0pt3l"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j3h8s"]
-data = PackedVector3Array(3.5, 0, 8, -8, 0, -8, 3.5, 0, -8, -8, 0, 8, -8, 0, -8, 3.5, 0, 8, 8, 0.5, 8, 4, 0.5, -8, 8, 0.5, -8, 8, 0.5, -8, 8, 0.25, 8, 8, 0.5, 8, 3.5, 0, -8, 4, 0.5, 8, 3.5, 0, 8, 4, 0.5, 8, 4, 0.5, -8, 8, 0.5, 8, 4, 0.5, -8, 4, 0.5, 8, 3.5, 0, -8, 8, 0.25, -8, 8, 0.25, 8, 8, 0.5, -8)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_r7j5s"]
+data = PackedVector3Array(4, 0, 8, -8, 0, 8, 4, 0, -8, 4, 0, -8, -8, 0, 8, -8, 0, -8, 7.75, 0.5, -8, 7.75, 0.5, 8, 4, 0.5, 8, 4, 0.5, 8, 4, 0.5, -8, 7.75, 0.5, -8, 8, 0.5, -8, 8, 0.25, 8, 8, 0.5, 8, 8, 0.25, -8, 8, 0.25, 8, 8, 0.5, -8, 7.75, 0.5, 8, 7.75, 0.5, -8, 8, 0.5, -8, 8, 0.5, -8, 8, 0.5, 8, 7.75, 0.5, 8, 4, 0, -8, 4, 0.5, -8, 4, 0, 8, 4, 0, 8, 4, 0.5, -8, 4, 0.5, 8)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource( "1_7jv83" )
+surface_material_override/1 = ExtResource( "2_oat4o" )
+surface_material_override/2 = ExtResource( "3_nk368" )
+surface_material_override/3 = ExtResource( "4_0pt3l" )
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_j3h8s" )
+shape = SubResource( "ConcavePolygonShape3D_r7j5s" )

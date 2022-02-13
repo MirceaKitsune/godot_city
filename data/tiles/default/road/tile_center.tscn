@@ -1,19 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://du5as1dvflp44"]
 
-[ext_resource type="ArrayMesh" uid="uid://gtevhb2ofdo8" path="res://data/tiles/default/road_center.obj" id="1_308ea"]
+[ext_resource type="ArrayMesh" uid="uid://dlt8p2brkv2u4" path="res://data/tiles/default/road/tile_center.obj" id="1_308ea"]
+[ext_resource type="Material" uid="uid://c065wt62mjqs7" path="res://data/materials/concrete.tres" id="2_0c7gh"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6l07n"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i2q07"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_t4rrg"]
 data = PackedVector3Array(8, 0.25, -8, -8, 0.25, 8, -8, 0.25, -8, 8, 0.25, 8, -8, 0.25, 8, 8, 0.25, -8)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource( "1_308ea" )
+surface_material_override/0 = ExtResource( "2_0c7gh" )
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-physics_material_override = SubResource( "PhysicsMaterial_6l07n" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_i2q07" )
+shape = SubResource( "ConcavePolygonShape3D_t4rrg" )

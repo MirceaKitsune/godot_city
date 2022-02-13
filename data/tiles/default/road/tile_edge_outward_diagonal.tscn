@@ -1,16 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://xr0q4qblql3o"]
+[gd_scene load_steps=6 format=3 uid="uid://xr0q4qblql3o"]
 
-[ext_resource type="ArrayMesh" uid="uid://cx32wxfqmlute" path="res://data/tiles/default/road_edge_outward_diagonal.obj" id="1_cmpqb"]
+[ext_resource type="ArrayMesh" uid="uid://co7ieu0dxoibm" path="res://data/tiles/default/road/tile_edge_outward_diagonal.obj" id="1_cmpqb"]
+[ext_resource type="Material" uid="uid://cnpxan38ge32w" path="res://data/materials/tiles.tres" id="2_gl8bs"]
+[ext_resource type="Material" uid="uid://c1uufvgdgie42" path="res://data/materials/tiles_large.tres" id="3_y8k5x"]
+[ext_resource type="Material" uid="uid://q0rfpixbugic" path="res://data/materials/tiles_large_dirt.tres" id="4_t66xf"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v8k6u"]
-data = PackedVector3Array(8, 0, 8, -3.5, 0, 8, -3.5, 0, 3.5, 8, 0, 8, 3.5, 0, -3.5, 8, 0, -3.5, -8, 0, -8, 3.5, 0, -8, 3.5, 0, -3.5, -8, 0, -8, -3.5, 0, 3.5, -8, 0, 3.5, 3.5, 0, -3.5, -3.5, 0, 3.5, -8, 0, -8, 8, 0, 8, -3.5, 0, 3.5, 3.5, 0, -3.5, 8, 0.5, -8, 4, 0.5, -4, 4, 0.5, -8, 3.5, 0, -3.5, 4, 0.5, -8, 4, 0.5, -4, 3.5, 0, -3.5, 8, 0.5, -4, 8, 0, -3.5, 8, 0.5, -4, 4, 0.5, -4, 8, 0.5, -8, 4, 0.5, -4, 8, 0.5, -4, 3.5, 0, -3.5, 3.5, 0, -8, 4, 0.5, -8, 3.5, 0, -3.5, -3.5, 0, 3.5, -4, 0.5, 8, -4, 0.5, 4, -8, 0.5, 8, -4, 0.5, 4, -4, 0.5, 8, -3.5, 0, 3.5, -8, 0.5, 4, -8, 0, 3.5, -8, 0.5, 4, -4, 0.5, 4, -8, 0.5, 8, -4, 0.5, 4, -8, 0.5, 4, -3.5, 0, 3.5, -3.5, 0, 8, -4, 0.5, 8, -3.5, 0, 3.5)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lupu7"]
+data = PackedVector3Array(8, 0, 8, -4, 0, 8, -4, 0, 4, 8, 0, 8, 4, 0, -4, 8, 0, -4, -8, 0, -8, 4, 0, -8, 4, 0, -4, -8, 0, -8, -4, 0, 4, -8, 0, 4, 4, 0, -4, -4, 0, 4, -8, 0, -8, 8, 0, 8, -4, 0, 4, 4, 0, -4, 4, 0.5, -4, 4, 0.5, -8, 7.75, 0.5, -8, 4, 0.5, -4, 7.75, 0.5, -8, 7.75, 0.5, -7.75, 8, 0.5, -4, 4, 0.5, -4, 8, 0.5, -7.75, 7.75, 0.5, -7.75, 8, 0.5, -7.75, 4, 0.5, -4, -4, 0.5, 4, -4, 0.5, 8, -7.75, 0.5, 8, -4, 0.5, 4, -7.75, 0.5, 8, -7.75, 0.5, 7.75, -4, 0.5, 4, -7.75, 0.5, 7.75, -8, 0.5, 7.75, -8, 0.5, 4, -4, 0.5, 4, -8, 0.5, 7.75, 7.75, 0.5, -7.75, 7.75, 0.5, -8, 8, 0.5, -8, 7.75, 0.5, -7.75, 8, 0.5, -8, 8, 0.5, -7.75, -7.75, 0.5, 8, -8, 0.5, 8, -7.75, 0.5, 7.75, -7.75, 0.5, 7.75, -8, 0.5, 8, -8, 0.5, 7.75, 4, 0, -4, 4, 0.5, -8, 4, 0.5, -4, 4, 0, -4, 8, 0.5, -4, 8, 0, -4, 4, 0.5, -4, 8, 0.5, -4, 4, 0, -4, 4, 0, -8, 4, 0.5, -8, 4, 0, -4, -4, 0, 4, -4, 0.5, 8, -4, 0.5, 4, -4, 0, 4, -8, 0.5, 4, -8, 0, 4, -4, 0.5, 4, -8, 0.5, 4, -4, 0, 4, -4, 0, 8, -4, 0.5, 8, -4, 0, 4)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource( "1_cmpqb" )
+surface_material_override/1 = ExtResource( "2_gl8bs" )
+surface_material_override/2 = ExtResource( "3_y8k5x" )
+surface_material_override/3 = ExtResource( "4_t66xf" )
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_v8k6u" )
+shape = SubResource( "ConcavePolygonShape3D_lupu7" )

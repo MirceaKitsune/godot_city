@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cnpxan38ge32w"]
+
+[ext_resource type="Texture2D" path="res://data/textures/tiles_diff.dds" id="1_j2wur"]
+[ext_resource type="Texture2D" path="res://data/textures/tiles_disp.dds" id="2_icy6t"]
+[ext_resource type="Texture2D" path="res://data/textures/tiles_norm.dds" id="3_i2px3"]
+[ext_resource type="Texture2D" path="res://data/textures/tiles_rough.dds" id="4_1lhey"]
+
+[resource]
+albedo_texture = ExtResource( "1_j2wur" )
+roughness_texture = ExtResource( "4_1lhey" )
+normal_enabled = true
+normal_texture = ExtResource( "3_i2px3" )
+heightmap_enabled = true
+heightmap_texture = ExtResource( "2_icy6t" )
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
