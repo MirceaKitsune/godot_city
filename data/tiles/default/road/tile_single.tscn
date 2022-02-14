@@ -1,16 +1,83 @@
-[gd_scene load_steps=3 format=3 uid="uid://mv02peqlbw2r"]
+[gd_scene load_steps=8 format=3 uid="uid://mv02peqlbw2r"]
 
-[ext_resource type="ArrayMesh" uid="uid://wacke6jri183" path="res://data/tiles/default/road/tile_single.obj" id="1_aovni"]
+[ext_resource type="Script" path="res://scripts/terrain.gd" id="1_qrvp1"]
+[ext_resource type="Material" uid="uid://q0rfpixbugic" path="res://data/materials/tiles_large_dirt.tres" id="2_54b53"]
+[ext_resource type="Material" uid="uid://c1uufvgdgie42" path="res://data/materials/tiles_large.tres" id="2_b1qce"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_iq71a"]
-data = PackedVector3Array(2, 0, -2, -2, 0, 2, -2, 0, -2, 2, 0, 2, -2, 0, 2, 2, 0, -2)
+[sub_resource type="BoxMesh" id="BoxMesh_nwbqs"]
+size = Vector3(2.75, 0.25, 2.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_770mv"]
+size = Vector3(2.75, 0.25, 2.75)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ti6er"]
+top_radius = 0.125
+bottom_radius = 0.125
+height = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lyovj"]
+radius = 0.125
+height = 0.5
 
 [node name="Node3D" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource( "1_aovni" )
+[node name="Terrain" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+script = ExtResource( "1_qrvp1" )
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="Structure" type="Node3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_iq71a" )
+[node name="BarrierBase" type="MeshInstance3D" parent="Structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource( "BoxMesh_nwbqs" )
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource( "2_54b53" )
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Structure/BarrierBase"]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Structure/BarrierBase/StaticBody3D"]
+shape = SubResource( "BoxShape3D_770mv" )
+
+[node name="Barrier1" type="MeshInstance3D" parent="Structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -1)
+mesh = SubResource( "CylinderMesh_ti6er" )
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource( "2_b1qce" )
+
+[node name="StaticBody3D1" type="StaticBody3D" parent="Structure/Barrier1"]
+
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="Structure/Barrier1/StaticBody3D1"]
+shape = SubResource( "CylinderShape3D_lyovj" )
+
+[node name="Barrier2" type="MeshInstance3D" parent="Structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 1)
+mesh = SubResource( "CylinderMesh_ti6er" )
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource( "2_b1qce" )
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Structure/Barrier2"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Structure/Barrier2/StaticBody3D2"]
+shape = SubResource( "CylinderShape3D_lyovj" )
+
+[node name="Barrier3" type="MeshInstance3D" parent="Structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -1)
+mesh = SubResource( "CylinderMesh_ti6er" )
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource( "2_b1qce" )
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Structure/Barrier3"]
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Structure/Barrier3/StaticBody3D3"]
+shape = SubResource( "CylinderShape3D_lyovj" )
+
+[node name="Barrier4" type="MeshInstance3D" parent="Structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
+mesh = SubResource( "CylinderMesh_ti6er" )
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource( "2_b1qce" )
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Structure/Barrier4"]
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Structure/Barrier4/StaticBody3D4"]
+shape = SubResource( "CylinderShape3D_lyovj" )

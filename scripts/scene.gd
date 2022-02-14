@@ -30,7 +30,7 @@ class _tileset extends Node3D:
 				var scene_name = brush + "_" + tile
 				var scene_file = brush + "/" + def.brushes[brush].tileset[tile] + ".tscn"
 				scenes[scene_name] = load(path + scene_file)
-				print("Loaded scene \"", scene_name, "\" from file \"", scene_file, "\"")
+				# print("Loaded scene \"", scene_name, "\" from file \"", scene_file, "\"")
 
 	func _tile_update(pos: Vector3i):
 		# Decide which neighboring tiles are of the same type and can therefore be used for connection
@@ -112,14 +112,15 @@ class _tileset extends Node3D:
 
 		# Set a new scene if a desired name is specified
 		if tiles[pos].is_empty():
-			print("Tile \"", scene_pos, "\" cleared")
+			# print("Tile \"", scene_pos, "\" cleared")
+			pass
 		else:
 			scenes_tile[pos] = scenes[scene_name].instantiate()
 			scenes_tile[pos].position = scene_pos
 			scenes_tile[pos].rotation = scene_rot
 			scenes_tile[pos].name = scene_name
 			parent.add_child(scenes_tile[pos])
-			print("Tile \"", scene_pos, "\" set to ", scene_name)
+			# print("Tile \"", scene_pos, "\" set to ", scene_name)
 
 	func generate(mins: Vector3i, maxs: Vector3i, seed: int):
 		var noise = OpenSimplexNoise.new()
