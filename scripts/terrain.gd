@@ -5,14 +5,7 @@ extends Node3D
 @export var height = 0.25
 @export var mat = "rocks"
 
-func _mesh(pos: Vector3):
-	var noise = OpenSimplexNoise.new()
-	noise.seed = seed
-	noise.octaves = 0
-	noise.lacunarity = 0
-	noise.period = size
-	noise.persistence = 0.5
-
+func _generate_mesh(pos: Vector3, noise: OpenSimplexNoise):
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 
@@ -27,34 +20,31 @@ func _mesh(pos: Vector3):
 			var corner_2 = Vector3(uv_2.x, noise.get_noise_2d(uv_2.x + pos.x, uv_2.y + pos.z) * height, uv_2.y)
 			var corner_3 = Vector3(uv_3.x, noise.get_noise_2d(uv_3.x + pos.x, uv_3.y + pos.z) * height, uv_3.y)
 			var corner_4 = Vector3(uv_4.x, noise.get_noise_2d(uv_4.x + pos.x, uv_4.y + pos.z) * height, uv_4.y)
-
-			# First triangle
-			st.set_uv(uv_1)
-			st.add_vertex(corner_1)
-			st.set_uv(uv_2)
-			st.add_vertex(corner_2)
-			st.set_uv(uv_3)
-			st.add_vertex(corner_3)
-
-			# Second triangle
-			st.set_uv(uv_4)
-			st.add_vertex(corner_4)
-			st.set_uv(uv_3)
-			st.add_vertex(corner_3)
-			st.set_uv(uv_2)
-			st.add_vertex(corner_2)
+			st.add_triangle_fan(PackedVector3Array([corner_1, corner_2, corner_3]), PackedVector2Array([uv_1, uv_2, uv_3]))
+			st.add_triangle_fan(PackedVector3Array([corner_4, corner_3, corner_2]), PackedVector2Array([uv_4, uv_3, uv_2]))
 
 	st.index()
 	st.generate_normals()
 	st.set_material(load("res://data/materials/" + mat + ".tres"))
 	return st.commit()
 
-func _ready():
-	var m = MeshInstance3D.new()
+func _generate():
+	# Terrain patches must have the same rotation, extract rotation offset from the parent node
 	var pos = get_parent().position
-	m.mesh = _mesh(pos)
+	var rot = get_parent().rotation
+	rotation -= rot
+
+	var n = OpenSimplexNoise.new()
+	n.seed = seed
+	n.octaves = 0
+	n.lacunarity = 0
+	n.period = size
+	n.persistence = 0.5
+
+	var m = MeshInstance3D.new()
+	m.mesh = _generate_mesh(pos, n)
 	m.create_trimesh_collision()
 	add_child(m)
 
-	# All instances must have the same rotation
-	get_parent().rotation = Vector3(0, 0, 0)
+func _ready():
+	call_deferred("_generate")

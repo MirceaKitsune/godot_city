@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://wyjdydqkofk0"
+path="res://.godot/imported/tile_edge_inward_round.obj-fa29bcb83421eb4c9987309d9d846b16.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile_edge_inward_round.obj-fa29bcb83421eb4c9987309d9d846b16.mesh"]
+
+source_file="res://data/tiles/default/road/tile_edge_inward_round.obj"
+dest_files=["res://.godot/imported/tile_edge_inward_round.obj-fa29bcb83421eb4c9987309d9d846b16.mesh", "res://.godot/imported/tile_edge_inward_round.obj-fa29bcb83421eb4c9987309d9d846b16.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

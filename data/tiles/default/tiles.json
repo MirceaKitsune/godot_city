@@ -4,29 +4,24 @@
 	"noise_scale": 16,
 	"brushes": {
 		"terrain": {
-			"noise_min": -1,
+			"noise_min": 0,
 			"noise_max": 1,
 			"height": 0,
 			"tileset": {
-				"single":"terrain",
-				"center":"terrain",
-				"edge":"terrain",
-				"edge_inward":"terrain",
-				"edge_outward":"terrain",
-				"edge_outward_diagonal":"terrain"
+				"single":["terrain"]
 			}
 		},
 		"road": {
-			"noise_min": -0.5,
-			"noise_max": 0,
+			"noise_min": 0,
+			"noise_max": 0.25,
 			"height": 0,
 			"tileset": {
-				"single":"tile_single",
-				"center":"tile_center",
-				"edge":"tile_edge",
-				"edge_inward":"tile_edge_inward",
-				"edge_outward":"tile_edge_outward",
-				"edge_outward_diagonal":"tile_edge_outward_diagonal"
+				"single":["tile_single"],
+				"center":["tile_center"],
+				"edge":["tile_edge"],
+				"edge_inward":["tile_edge_inward", "tile_edge_inward_round"],
+				"edge_outward":["tile_edge_outward", "tile_edge_outward_round"],
+				"edge_outward_diagonal":["tile_edge_outward_diagonal", "tile_edge_outward_diagonal_round"]
 			}
 		}
 	}

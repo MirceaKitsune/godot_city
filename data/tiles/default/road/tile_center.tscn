@@ -4,7 +4,7 @@
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Terrain" type="Node3D" parent="."]
+[node name="Road" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 script = ExtResource( "1_44ens" )
 seed = 1

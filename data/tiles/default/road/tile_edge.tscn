@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://boikj83en3hij"]
 
-[ext_resource type="ArrayMesh" uid="uid://bigbm5y2n2d2" path="res://data/tiles/default/road/tile_edge.obj" id="1_7jv83"]
+[ext_resource type="ArrayMesh" uid="uid://c1qq1ro6qihbl" path="res://data/tiles/default/road/tile_edge.obj" id="1_7jv83"]
 [ext_resource type="Material" uid="uid://cnpxan38ge32w" path="res://data/materials/tiles.tres" id="2_oat4o"]
 [ext_resource type="Material" uid="uid://c1uufvgdgie42" path="res://data/materials/tiles_large.tres" id="3_nk368"]
 [ext_resource type="Material" uid="uid://q0rfpixbugic" path="res://data/materials/tiles_large_dirt.tres" id="4_abine"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fqtml"]
-data = PackedVector3Array(-1.5, 0.5, 2, -1.5, 0.5, -2, 1.75, 0.5, -2, 1.75, 0.5, 2, -1.5, 0.5, 2, 1.75, 0.5, -2, 2, 0.5, -2, 2, 0.25, -2, 2, 0.5, 2, 1.75, 0.5, 2, 1.75, 0.5, -2, 2, 0.5, -2, 2, 0.5, -2, 2, 0.5, 2, 1.75, 0.5, 2, 2, 0.5, 2, 2, 0.25, -2, 2, 0.25, 2, -2, 0, -2, -2, 0.5, -2, -2, 0, 2, -2, 0, 2, -2, 0.5, -2, -2, 0.5, 2, -2, 0.5, 2, -2, 0.5, -2, -1.5, 0.5, -2, -1.5, 0.5, -2, -1.5, 0.5, 2, -2, 0.5, 2)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5oky1"]
+data = PackedVector3Array(1.75, 0.5, 2, -1.5, 0.5, 2, 1.75, 0.5, -2, 1.75, 0.5, -2, -1.5, 0.5, 2, -1.5, 0.5, -2, 2, 0.25, 2, 2, 0.5, 2, 2, 0.25, -2, 2, 0.25, -2, 2, 0.5, 2, 2, 0.5, -2, 2, 0.5, -2, 2, 0.5, 2, 1.75, 0.5, -2, 1.75, 0.5, -2, 2, 0.5, 2, 1.75, 0.5, 2, -1.5, 0.5, -2, -1.5, 0.5, 2, -2, 0.5, -2, -2, 0.5, -2, -1.5, 0.5, 2, -2, 0.5, 2, -2, 0.5, 2, -2, 0, 2, -2, 0.5, -2, -2, 0.5, -2, -2, 0, 2, -2, 0, -2)
 
 [node name="Node3D" type="Node3D"]
 
@@ -19,4 +19,4 @@ surface_material_override/2 = ExtResource( "4_abine" )
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_fqtml" )
+shape = SubResource( "ConcavePolygonShape3D_5oky1" )
