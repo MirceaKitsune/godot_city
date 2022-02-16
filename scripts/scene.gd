@@ -7,28 +7,21 @@ extends Node3D
 class _tileset extends Node3D:
 	# parent: The node that tile scenes will be parented to
 	# def: The JSON definition of this tileset
-	# noise: Noise used by the generator as well as tile variations
 	# scenes: Stores the scenes of all tiles defined by brushes, indexed by brush name + tile name + variation index
 	# scenes_tile: Individual instances of scenes, indexed by tile position
-	# tiles: The name brush name of this tile, indexed by tile position
+	# tiles: The brush name of this tile, indexed by tile position
+	# tiles_var: A value between 0 and 1 indicating the tile variation at this location, indexed by tile position
 	var parent: Node3D
 	var def: Dictionary
-	var noise: OpenSimplexNoise
 	var scenes: Dictionary
 	var scenes_tile: Dictionary
 	var tiles: Dictionary
+	var tiles_var: Dictionary
 
-	func _init(p: Node3D, n: String, seed: int):
+	func _init(p: Node3D, n: String):
 		var path = "res://data/tiles/" + n + "/"
 		parent = p
 		def = Util.get_json(path + "tiles.json")
-
-		noise = OpenSimplexNoise.new()
-		noise.seed = seed
-		noise.octaves = 0
-		noise.lacunarity = 0
-		noise.period = def.noise_scale
-		noise.persistence = 0.5
 
 		# Preload the tile scenes for each brush
 		for brush in def.brushes:
@@ -107,12 +100,9 @@ class _tileset extends Node3D:
 					type = ["edge_outward", 0]
 
 			# The noise value at this position is transposed to the total number of variations available for this tile
-			# To avoid pattern synchronization with the generator while using the same noise, the result is squashed rather than inverted
-			var variation = 0
+			# Due to how the noise pattern works, items first in the list have a higher probability of being picked
 			var variations = def.brushes[tiles[pos]].tileset[type[0]].size()
-			if variations > 1:
-				var n = (1 + noise.get_noise_3dv(pos * def.scale)) / 2
-				variation = floor(n * variations)
+			var variation = floor(tiles_var[pos] * variations)
 
 			# Determine the real name position and rotation used by the scene node
 			scene_pos = pos * def.scale
@@ -134,7 +124,23 @@ class _tileset extends Node3D:
 			scenes_tile[pos].name = scene_name
 			parent.add_child(scenes_tile[pos])
 
-	func generate(mins: Vector3i, maxs: Vector3i):
+	func generate(mins: Vector3i, maxs: Vector3i, seed: int):
+		# Noise used to determine tile type
+		var noise = OpenSimplexNoise.new()
+		noise.seed = seed
+		noise.octaves = 0
+		noise.lacunarity = 0
+		noise.period = def.noise_generator_scale
+		noise.persistence = 0.5
+
+		# Noise used to determine tile variation
+		var noise_variation = OpenSimplexNoise.new()
+		noise_variation.seed = seed + 1
+		noise_variation.octaves = 0
+		noise_variation.lacunarity = 0
+		noise_variation.period = def.noise_variation_scale
+		noise_variation.persistence = 0.5
+
 		# Translate noise values into the tiles table
 		for x in range(mins.x, maxs.x + 1, 1):
 			for y in range(mins.y, maxs.y + 1, 1):
@@ -143,9 +149,12 @@ class _tileset extends Node3D:
 					var scene_pos = pos * def.scale
 					var n = abs(noise.get_noise_3dv(scene_pos))
 					tiles[pos] = ""
+					tiles_var[pos] = 0
 					for brush in def.brushes:
 						if def.brushes[brush].height == y and n >= def.brushes[brush].noise_min and n <= def.brushes[brush].noise_max:
+							var nv = (1 + noise_variation.get_noise_3dv(scene_pos)) / 2
 							tiles[pos] = brush
+							tiles_var[pos] = nv
 
 		# Update all tiles in the changed area
 		for x in range(mins.x, maxs.x + 1, 1):
@@ -158,5 +167,5 @@ func _ready():
 	var size = floor(count / 2)
 	var size_mins = Vector3i(-size, -height, -size)
 	var size_maxs = Vector3i(size, height, size)
-	var t = _tileset.new(self, tileset, randi())
-	t.generate(size_mins, size_maxs)
+	var t = _tileset.new(self, tileset)
+	t.generate(size_mins, size_maxs, randi())

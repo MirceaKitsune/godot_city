@@ -1,7 +1,8 @@
 {
 	"name": "default",
 	"scale": 4,
-	"noise_scale": 16,
+	"noise_generator_scale": 16,
+	"noise_variation_scale": 4,
 	"brushes": {
 		"terrain": {
 			"noise_min": 0,
@@ -18,10 +19,10 @@
 			"tileset": {
 				"single":["tile_single"],
 				"center":["tile_center"],
-				"edge":["tile_edge"],
+				"edge":["tile_edge", "tile_edge", "tile_edge", "tile_edge_with_streetlight"],
 				"edge_inward":["tile_edge_inward", "tile_edge_inward_round"],
 				"edge_outward":["tile_edge_outward", "tile_edge_outward_round"],
-				"edge_outward_diagonal":["tile_edge_outward_diagonal", "tile_edge_outward_diagonal_round"]
+				"edge_outward_diagonal":["tile_edge_outward_diagonal"]
 			}
 		}
 	}

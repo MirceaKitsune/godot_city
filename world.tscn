@@ -3,29 +3,76 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_02wij"]
 [ext_resource type="Script" path="res://scripts/scene.gd" id="2_237tr"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ru03m"]
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_8tdyp"]
+rayleigh_color = Color(0.247059, 0.498039, 0.74902, 1)
+mie_color = Color(0.74902, 0.87451, 1, 1)
+ground_color = Color(0.498039, 0.435294, 0.372549, 1)
 
-[sub_resource type="Sky" id="Sky_eh0wt"]
-sky_material = SubResource( "PhysicalSkyMaterial_ru03m" )
+[sub_resource type="Sky" id="Sky_tey3t"]
+sky_material = SubResource( "PhysicalSkyMaterial_8tdyp" )
+process_mode = 3
 
-[sub_resource type="Environment" id="Environment_o7c52"]
+[sub_resource type="Environment" id="Environment_22h5t"]
 background_mode = 2
-sky = SubResource( "Sky_eh0wt" )
+sky = SubResource( "Sky_tey3t" )
 tonemap_mode = 2
 auto_exposure_enabled = true
+auto_exposure_scale = 0.5
+auto_exposure_min_luma = 0.25
+auto_exposure_max_luma = 1.0
 ss_reflections_enabled = true
 ssao_enabled = true
 ssil_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = true
 glow_enabled = true
-fog_enabled = true
+fog_light_color = Color(0.247059, 0.372549, 0.498039, 1)
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.025
+volumetric_fog_density = 0.01
 
-[sub_resource type="CameraEffects" id="CameraEffects_q4koo"]
+[sub_resource type="CameraEffects" id="CameraEffects_x6gpe"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_a81ig"]
-radius = 0.5
-height = 2.0
+[sub_resource type="Animation" id="Animation_ul771"]
+resource_name = "Daytime"
+length = 100.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 25, 50, 75, 100),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.0472, 1.5708, 0), Vector3(0, 3.14159, 0), Vector3(-1.0472, 4.71239, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 15, 35, 50, 60, 90, 100),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 10.0, 10.0, 0.0, 0.01, 0.01, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5, 10, 15, 35, 40, 45, 50, 55, 60, 90, 95, 100),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.74902, 0.247059, 1), Color(1, 1, 0.87451, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 0.87451, 1), Color(1, 0.74902, 0.247059, 1), Color(1, 0, 0, 1), Color(1, 1, 0.74902, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 0.74902, 1), Color(1, 0, 0, 1)]
+}
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2dn0i"]
 radius = 0.5
@@ -38,17 +85,18 @@ height = 2.0
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( "Environment_o7c52" )
-camera_effects = SubResource( "CameraEffects_q4koo" )
+environment = SubResource( "Environment_22h5t" )
+camera_effects = SubResource( "CameraEffects_x6gpe" )
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 5, 0)
-light_color = Color(1, 0.87451, 0.74902, 1)
-directional_shadow_mode = 0
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
 
-[node name="PlayerDummy" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource( "CapsuleMesh_a81ig" )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment/DirectionalLight3D"]
+autoplay = "Daytime"
+anims/Daytime = SubResource( "Animation_ul771" )
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
@@ -62,7 +110,6 @@ shape = SubResource( "CapsuleShape3D_dqoci" )
 
 [node name="PlayerLight" type="SpotLight3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
-light_energy = 5.0
 shadow_enabled = true
 spot_range = 50.0
 
