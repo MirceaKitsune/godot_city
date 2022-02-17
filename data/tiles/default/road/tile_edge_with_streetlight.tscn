@@ -1,9 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://l3rvy1cwkjbs"]
+[gd_scene load_steps=18 format=3 uid="uid://l3rvy1cwkjbs"]
 
 [ext_resource type="ArrayMesh" uid="uid://c1qq1ro6qihbl" path="res://data/tiles/default/road/tile_edge.obj" id="1_7jv83"]
 [ext_resource type="Material" uid="uid://cnpxan38ge32w" path="res://data/materials/tiles.tres" id="2_oat4o"]
 [ext_resource type="Material" uid="uid://c1uufvgdgie42" path="res://data/materials/tiles_large.tres" id="3_nk368"]
 [ext_resource type="Material" uid="uid://q0rfpixbugic" path="res://data/materials/tiles_large_dirt.tres" id="4_abine"]
+[ext_resource type="Material" uid="uid://bf04uacvmxyqw" path="res://data/materials/lamp_off.tres" id="5_r34sr"]
+[ext_resource type="Script" path="res://scripts/daytime.gd" id="5_rbfsd"]
+[ext_resource type="Material" uid="uid://drekd5mi2538c" path="res://data/materials/lamp_on.tres" id="5_rxppv"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5oky1"]
 data = PackedVector3Array(1.75, 0.5, 2, -1.5, 0.5, 2, 1.75, 0.5, -2, 1.75, 0.5, -2, -1.5, 0.5, 2, -1.5, 0.5, -2, 2, 0.25, 2, 2, 0.5, 2, 2, 0.25, -2, 2, 0.25, -2, 2, 0.5, 2, 2, 0.5, -2, 2, 0.5, -2, 2, 0.5, 2, 1.75, 0.5, -2, 1.75, 0.5, -2, 2, 0.5, 2, 1.75, 0.5, 2, -1.5, 0.5, -2, -1.5, 0.5, 2, -2, 0.5, -2, -2, 0.5, -2, -1.5, 0.5, 2, -2, 0.5, 2, -2, 0.5, 2, -2, 0, 2, -2, 0.5, -2, -2, 0.5, -2, -2, 0, 2, -2, 0, -2)
@@ -39,16 +42,10 @@ height = 0.05
 rings = 16
 is_hemisphere = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5myi0"]
-roughness = 0.0
-emission = Color(0.74902, 0.87451, 1, 1)
-emission_energy = 5.0
-
 [sub_resource type="Animation" id="Animation_8x4p1"]
-resource_name = "Light"
-length = 100.0
+resource_name = "daytime"
 loop_mode = 1
-step = 1.0
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -56,22 +53,22 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 50),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.275, 0.725),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [false, true]
+"values": [true, false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("..:surface_material_override/0:emission_enabled")
+tracks/1/path = NodePath("..:surface_material_override/0")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 50),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [false, true]
+"times": PackedFloat32Array(0, 0.275, 0.725),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource( "5_rxppv" ), ExtResource( "5_r34sr" ), ExtResource( "5_rxppv" )]
 }
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gs8k1"]
@@ -109,7 +106,7 @@ surface_material_override/0 = SubResource( "StandardMaterial3D_leg3k" )
 transform = Transform3D(1, 0, 0, 0, -1, 7.54979e-08, 0, -3.01992e-07, -1, 0, -0.175, 0)
 mesh = SubResource( "SphereMesh_8fij1" )
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource( "StandardMaterial3D_5myi0" )
+surface_material_override/0 = ExtResource( "5_r34sr" )
 
 [node name="StreetLampLight" type="SpotLight3D" parent="Streetlight/StreetlightTop/StreetlightTopLamp"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 2, 0, 0, 0.2, 0)
@@ -121,8 +118,10 @@ spot_range = 10.0
 spot_angle = 60.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Streetlight/StreetlightTop/StreetlightTopLamp/StreetLampLight"]
-autoplay = "Light"
-anims/Light = SubResource( "Animation_8x4p1" )
+anims/daytime = SubResource( "Animation_8x4p1" )
+script = ExtResource( "5_rbfsd" )
+chance = 0.875
+offset = 0.025
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Streetlight/StreetlightTop"]
 

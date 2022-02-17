@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://drekd5mi2538c"]
+
+[resource]
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.74902, 0.87451, 1, 1)
+emission_energy = 5.0
