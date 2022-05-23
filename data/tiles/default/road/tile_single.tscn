@@ -16,8 +16,8 @@ bottom_radius = 0.125
 height = 0.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lyovj"]
-radius = 0.125
 height = 0.5
+radius = 0.125
 
 [node name="Node3D" type="Node3D"]
 

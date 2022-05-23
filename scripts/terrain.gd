@@ -5,7 +5,7 @@ extends Node3D
 @export var height = 0.25
 @export var mat = "rocks"
 
-func _generate_mesh(pos: Vector3, noise: OpenSimplexNoise):
+func _generate_mesh(pos: Vector3, noise: FastNoiseLite):
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 
@@ -34,12 +34,10 @@ func _generate():
 	var rot = get_parent().rotation
 	rotation -= rot
 
-	var n = OpenSimplexNoise.new()
+	var n = FastNoiseLite.new()
+	n.noise_type = n.TYPE_SIMPLEX
 	n.seed = seed
-	n.octaves = 0
-	n.lacunarity = 0
-	n.period = size
-	n.persistence = 0.5
+	n.frequency = size
 
 	var m = MeshInstance3D.new()
 	m.mesh = _generate_mesh(pos, n)

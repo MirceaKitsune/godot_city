@@ -1,8 +1,8 @@
 {
 	"name": "default",
 	"scale": 4,
-	"noise_generator_scale": 16,
-	"noise_variation_scale": 4,
+	"noise_generator_scale": 0.025,
+	"noise_variation_scale": 0.05,
 	"brushes": {
 		"terrain": {
 			"noise_min": 0,

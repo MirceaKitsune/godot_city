@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://l3rvy1cwkjbs"]
+[gd_scene load_steps=19 format=3 uid="uid://l3rvy1cwkjbs"]
 
 [ext_resource type="ArrayMesh" uid="uid://c1qq1ro6qihbl" path="res://data/tiles/default/road/tile_edge.obj" id="1_7jv83"]
 [ext_resource type="Material" uid="uid://cnpxan38ge32w" path="res://data/materials/tiles.tres" id="2_oat4o"]
@@ -30,7 +30,6 @@ roughness = 0.25
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 0.3), -2.0, -2.0, 0, 0, Vector2(0.4, 0.5), 0.0, 0.0, 0, 0, Vector2(0.9, 1), 1.66667, 1.66667, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_rm6b6"]
-radius = 0.5
 radial_steps = 64
 sections = 2
 section_rings = 16
@@ -71,13 +70,18 @@ tracks/1/keys = {
 "values": [ExtResource( "5_rxppv" ), ExtResource( "5_r34sr" ), ExtResource( "5_rxppv" )]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmnan"]
+_data = {
+"daytime": SubResource( "Animation_8x4p1" )
+}
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gs8k1"]
-radius = 0.6
 height = 0.375
+radius = 0.6
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_62dbb"]
-radius = 0.125
 height = 5.0
+radius = 0.125
 
 [node name="Node3D" type="Node3D"]
 
@@ -118,7 +122,9 @@ spot_range = 10.0
 spot_angle = 60.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Streetlight/StreetlightTop/StreetlightTopLamp/StreetLampLight"]
-anims/daytime = SubResource( "Animation_8x4p1" )
+libraries = {
+"": SubResource( "AnimationLibrary_fmnan" )
+}
 script = ExtResource( "5_rbfsd" )
 chance = 0.875
 offset = 0.025

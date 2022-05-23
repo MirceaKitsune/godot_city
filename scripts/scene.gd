@@ -126,20 +126,16 @@ class _tileset extends Node3D:
 
 	func generate(mins: Vector3i, maxs: Vector3i, seed: int):
 		# Noise used to determine tile type
-		var noise = OpenSimplexNoise.new()
+		var noise = FastNoiseLite.new()
+		noise.noise_type = noise.TYPE_SIMPLEX
 		noise.seed = seed
-		noise.octaves = 0
-		noise.lacunarity = 0
-		noise.period = def.noise_generator_scale
-		noise.persistence = 0.5
+		noise.frequency = def.noise_generator_scale
 
 		# Noise used to determine tile variation
-		var noise_variation = OpenSimplexNoise.new()
+		var noise_variation = FastNoiseLite.new()
+		noise_variation.noise_type = noise.TYPE_SIMPLEX
 		noise_variation.seed = seed + 1
-		noise_variation.octaves = 0
-		noise_variation.lacunarity = 0
-		noise_variation.period = def.noise_variation_scale
-		noise_variation.persistence = 0.5
+		noise_variation.frequency = def.noise_variation_scale
 
 		# Translate noise values into the tiles table
 		for x in range(mins.x, maxs.x + 1, 1):

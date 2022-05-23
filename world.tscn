@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://csqrrg6yk4o7q"]
+[gd_scene load_steps=12 format=3 uid="uid://csqrrg6yk4o7q"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_02wij"]
 [ext_resource type="Script" path="res://scripts/daytime.gd" id="1_7e6it"]
@@ -21,11 +21,9 @@ auto_exposure_enabled = true
 auto_exposure_scale = 0.5
 auto_exposure_min_luma = 0.25
 auto_exposure_max_luma = 1.0
-ss_reflections_enabled = true
 ssao_enabled = true
 ssil_enabled = true
 sdfgi_use_occlusion = true
-sdfgi_read_sky_light = true
 glow_enabled = true
 fog_light_color = Color(0.247059, 0.372549, 0.498039, 1)
 volumetric_fog_enabled = true
@@ -74,13 +72,14 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.247059, 0, 1), Color(1, 0.623529, 0.247059, 1), Color(1, 0.937255, 0.87451, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.937255, 0.87451, 1), Color(1, 0.623529, 0.247059, 1), Color(1, 0.247059, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_auf8j"]
+_data = {
+"daytime": SubResource( "Animation_ul771" )
+}
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2dn0i"]
-radius = 0.5
-height = 2.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dqoci"]
-radius = 0.5
-height = 2.0
 
 [node name="Node3D" type="Node3D"]
 
@@ -94,7 +93,9 @@ light_energy = 0.01
 shadow_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment/DirectionalLight3D"]
-anims/daytime = SubResource( "Animation_ul771" )
+libraries = {
+"": SubResource( "AnimationLibrary_auf8j" )
+}
 script = ExtResource( "1_7e6it" )
 
 [node name="Player" type="CharacterBody3D" parent="."]
