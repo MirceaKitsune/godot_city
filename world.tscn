@@ -10,17 +10,13 @@ mie_color = Color(0.74902, 0.87451, 1, 1)
 ground_color = Color(0.498039, 0.435294, 0.372549, 1)
 
 [sub_resource type="Sky" id="Sky_tey3t"]
-sky_material = SubResource( "PhysicalSkyMaterial_8tdyp" )
+sky_material = SubResource("PhysicalSkyMaterial_8tdyp")
 process_mode = 3
 
 [sub_resource type="Environment" id="Environment_22h5t"]
 background_mode = 2
-sky = SubResource( "Sky_tey3t" )
+sky = SubResource("Sky_tey3t")
 tonemap_mode = 2
-auto_exposure_enabled = true
-auto_exposure_scale = 0.5
-auto_exposure_min_luma = 0.25
-auto_exposure_max_luma = 1.0
 ssao_enabled = true
 ssil_enabled = true
 sdfgi_use_occlusion = true
@@ -29,7 +25,8 @@ fog_light_color = Color(0.247059, 0.372549, 0.498039, 1)
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
 
-[sub_resource type="CameraEffects" id="CameraEffects_x6gpe"]
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_wsfr1"]
+frustum_far = 1000.0
 
 [sub_resource type="Animation" id="Animation_ul771"]
 resource_name = "daytime"
@@ -74,7 +71,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_auf8j"]
 _data = {
-"daytime": SubResource( "Animation_ul771" )
+"daytime": SubResource("Animation_ul771")
 }
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2dn0i"]
@@ -84,8 +81,8 @@ _data = {
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( "Environment_22h5t" )
-camera_effects = SubResource( "CameraEffects_x6gpe" )
+environment = SubResource("Environment_22h5t")
+camera_attributes = SubResource("CameraAttributesPhysical_wsfr1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 0)
@@ -94,19 +91,19 @@ shadow_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment/DirectionalLight3D"]
 libraries = {
-"": SubResource( "AnimationLibrary_auf8j" )
+"": SubResource("AnimationLibrary_auf8j")
 }
-script = ExtResource( "1_7e6it" )
+script = ExtResource("1_7e6it")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
-script = ExtResource( "1_02wij" )
+script = ExtResource("1_02wij")
 
 [node name="PlayerShape" type="MeshInstance3D" parent="Player"]
-mesh = SubResource( "CapsuleMesh_2dn0i" )
+mesh = SubResource("CapsuleMesh_2dn0i")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="Player"]
-shape = SubResource( "CapsuleShape3D_dqoci" )
+shape = SubResource("CapsuleShape3D_dqoci")
 
 [node name="PlayerLight" type="SpotLight3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
@@ -117,4 +114,4 @@ spot_range = 50.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.25)
 
 [node name="Scene" type="Node3D" parent="."]
-script = ExtResource( "2_237tr" )
+script = ExtResource("2_237tr")

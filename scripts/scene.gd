@@ -106,7 +106,7 @@ class _tileset extends Node3D:
 
 			# Determine the real name position and rotation used by the scene node
 			scene_pos = pos * def.scale
-			scene_rot = Vector3(0, 1, 0) * deg2rad(type[1] * 90)
+			scene_rot = Vector3(0, 1, 0) * deg_to_rad(type[1] * 90)
 			scene_name = tiles[pos] + "_" + type[0] + "_" + str(variation)
 
 		# Remove the existing scene before proceeding, skip if the existing scene has identical properties

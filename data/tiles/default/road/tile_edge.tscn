@@ -11,12 +11,12 @@ data = PackedVector3Array(1.75, 0.5, 2, -1.5, 0.5, 2, 1.75, 0.5, -2, 1.75, 0.5, 
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource( "1_7jv83" )
-surface_material_override/0 = ExtResource( "2_oat4o" )
-surface_material_override/1 = ExtResource( "3_nk368" )
-surface_material_override/2 = ExtResource( "4_abine" )
+mesh = ExtResource("1_7jv83")
+surface_material_override/0 = ExtResource("2_oat4o")
+surface_material_override/1 = ExtResource("3_nk368")
+surface_material_override/2 = ExtResource("4_abine")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_5oky1" )
+shape = SubResource("ConcavePolygonShape3D_5oky1")

@@ -23,61 +23,61 @@ radius = 0.125
 
 [node name="Terrain" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-script = ExtResource( "1_qrvp1" )
+script = ExtResource("1_qrvp1")
 
 [node name="Structure" type="Node3D" parent="."]
 
 [node name="BarrierBase" type="MeshInstance3D" parent="Structure"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-mesh = SubResource( "BoxMesh_nwbqs" )
+mesh = SubResource("BoxMesh_nwbqs")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource( "2_54b53" )
+surface_material_override/0 = ExtResource("2_54b53")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Structure/BarrierBase"]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Structure/BarrierBase/StaticBody3D"]
-shape = SubResource( "BoxShape3D_770mv" )
+shape = SubResource("BoxShape3D_770mv")
 
 [node name="Barrier1" type="MeshInstance3D" parent="Structure"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -1)
-mesh = SubResource( "CylinderMesh_ti6er" )
+mesh = SubResource("CylinderMesh_ti6er")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource( "2_b1qce" )
+surface_material_override/0 = ExtResource("2_b1qce")
 
 [node name="StaticBody3D1" type="StaticBody3D" parent="Structure/Barrier1"]
 
 [node name="CollisionShape3D1" type="CollisionShape3D" parent="Structure/Barrier1/StaticBody3D1"]
-shape = SubResource( "CylinderShape3D_lyovj" )
+shape = SubResource("CylinderShape3D_lyovj")
 
 [node name="Barrier2" type="MeshInstance3D" parent="Structure"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 1)
-mesh = SubResource( "CylinderMesh_ti6er" )
+mesh = SubResource("CylinderMesh_ti6er")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource( "2_b1qce" )
+surface_material_override/0 = ExtResource("2_b1qce")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Structure/Barrier2"]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Structure/Barrier2/StaticBody3D2"]
-shape = SubResource( "CylinderShape3D_lyovj" )
+shape = SubResource("CylinderShape3D_lyovj")
 
 [node name="Barrier3" type="MeshInstance3D" parent="Structure"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -1)
-mesh = SubResource( "CylinderMesh_ti6er" )
+mesh = SubResource("CylinderMesh_ti6er")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource( "2_b1qce" )
+surface_material_override/0 = ExtResource("2_b1qce")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="Structure/Barrier3"]
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Structure/Barrier3/StaticBody3D3"]
-shape = SubResource( "CylinderShape3D_lyovj" )
+shape = SubResource("CylinderShape3D_lyovj")
 
 [node name="Barrier4" type="MeshInstance3D" parent="Structure"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
-mesh = SubResource( "CylinderMesh_ti6er" )
+mesh = SubResource("CylinderMesh_ti6er")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource( "2_b1qce" )
+surface_material_override/0 = ExtResource("2_b1qce")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="Structure/Barrier4"]
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Structure/Barrier4/StaticBody3D4"]
-shape = SubResource( "CylinderShape3D_lyovj" )
+shape = SubResource("CylinderShape3D_lyovj")

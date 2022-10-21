@@ -13,15 +13,15 @@ data = PackedVector3Array(1.9755, 0.5, -1.7512, 2, 0.5, -1.75, 1.6569, 0.5, 1.48
 
 [node name="Terrain" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-script = ExtResource( "1_gndym" )
+script = ExtResource("1_gndym")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource( "1_ol662" )
-surface_material_override/0 = ExtResource( "2_db6s8" )
-surface_material_override/1 = ExtResource( "3_yg3b7" )
-surface_material_override/2 = ExtResource( "4_h817k" )
+mesh = ExtResource("1_ol662")
+surface_material_override/0 = ExtResource("2_db6s8")
+surface_material_override/1 = ExtResource("3_yg3b7")
+surface_material_override/2 = ExtResource("4_h817k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_1gka1" )
+shape = SubResource("ConcavePolygonShape3D_1gka1")

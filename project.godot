@@ -22,5 +22,10 @@ _global_script_class_icons={
 
 config/name="City"
 run/main_scene="res://world.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
-config/features=PackedStringArray("4.0", "Vulkan Clustered")
+
+[rendering]
+
+anti_aliasing/quality/screen_space_aa=1
+anti_aliasing/quality/use_taa=true

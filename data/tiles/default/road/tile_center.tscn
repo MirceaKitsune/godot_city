@@ -6,7 +6,7 @@
 
 [node name="Road" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
-script = ExtResource( "1_44ens" )
+script = ExtResource("1_44ens")
 seed = 1
 height = 0.125
 mat = "concrete"
